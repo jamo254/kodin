@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "profiles/new"
+  get "profiles/show"
+  get "profiles/edit"
+ 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,5 +15,12 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "posts#index"
+  
+  # Posts routes
+  resources :posts
+  get 'tags/:tag', to: 'posts#tag', as: :tag
+  get ':username', to: 'profiles#show', as: :profile
+  get 'settings/profile', to: 'profiles#edit', as: :edit_profile
+  patch 'settings/profile', to: 'profiles#update', as: :update_profile
 end

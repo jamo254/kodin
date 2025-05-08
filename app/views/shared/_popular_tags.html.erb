@@ -1,0 +1,13 @@
+<!-- app/views/shared/_popular_tags.html.erb -->
+<div class="bg-white shadow rounded-lg p-6">
+  <h2 class="text-lg font-semibold text-gray-900 mb-4">Popular Tags</h2>
+  
+  <div class="flex flex-wrap gap-2">
+    <% ActsAsTaggableOn::Tag.most_used(15).each do |tag| %>
+      <%= link_to tag_path(tag.name), class: "px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 text-sm" do %>
+        #<%= tag.name %> 
+        <span class="text-gray-500 text-xs">(<%= tag.taggings_count %>)</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

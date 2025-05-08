@@ -22,15 +22,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.2]
       # t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+       t.string   :confirmation_token
+       t.datetime :confirmed_at
+       t.datetime :confirmation_sent_at
+       t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
 
       t.string :username
       t.string :first_name
@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.2]
       t.string :github_url
       t.string :twitter_url
       t.string :website_url
-      t.attachment :avatar
+      
 
       t.timestamps null: false
     end

@@ -34,7 +34,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -62,8 +62,12 @@ gem "devise", "~> 4.9"
 
 gem "redcarpet", "~> 3.3", ">= 3.3.4"
 gem "rouge", "~> 4.2"
-gem "friendly_id", "~> 5.1"
-gem "image_processing", "~> 1.12", ">= 1.12.2"
+# gem "friendly_id", "~> 5.1"
+
 gem "active_storage_validations", "~> 1.1", ">= 1.1.4"
-gem "ransack", "~> 1.7"
+# gem "ransack", "~> 1.7"
 gem "kaminari", "~> 1.2", ">= 1.2.2"
+
+gem "jsbundling-rails", "~> 1.3"
+
+gem 'acts-as-taggable-on'
