@@ -13,3 +13,46 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Explicit styling for highlighted code */
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #282c34;
+    color: #abb2bf;
+  }
+  
+  .hljs-comment,
+  .hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+  }
+  
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: #c678dd;
+  }
+  
+  .hljs-string,
+  .hljs-doctag {
+    color: #98c379;
+  }
+  
+  .hljs-number,
+  .hljs-literal {
+    color: #d19a66;
+  }
+  
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #61aeee;
+  }
+  
+  /* Make sure code blocks don't get Tailwind styles that might override hljs */
+  pre code {
+    @apply font-mono !important;
+    @apply text-inherit !important;
+    @apply bg-transparent !important;
+  }

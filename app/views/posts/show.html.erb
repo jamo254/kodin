@@ -42,7 +42,18 @@
     <% end %>
   </div>
   
-  <div class="prose prose-indigo max-w-none">
+  <div class="prose prose-indigo max-w-none trix-content">
     <%= @post.content %>
   </div>
+  
+  <script>
+    // Directly highlight any code blocks in the post
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.hljs) {
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightElement(block);
+        });
+      }
+    });
+  </script>
 </article>

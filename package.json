@@ -10,6 +10,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@rails/actiontext": "^8.0.200",
+    "highlight.js": "^11.11.1",
     "trix": "^2.1.15"
   }
 }

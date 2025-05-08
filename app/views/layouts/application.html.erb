@@ -1,40 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Kodin" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
-
-    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
-    
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
-    <!-- Highlight.js for syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  </head>
-
-  <body>
-     <%= render 'shared/navbar' %>
-    <main class="container mx-auto mt-28 px-5 flex">
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-      <%= yield %>
-    </main>
-  </body>
+<head>
+  <title><%= content_for(:title) || "Kodin" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= yield :head %>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+  
+  <!-- Highlight.js for syntax highlighting - MOVED BEFORE OTHER STYLES -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <!-- Add language-specific bundles that you need -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/ruby.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/html.min.js"></script>
+  
+  
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <%= render 'shared/navbar' %>
+  <main class="container mx-auto mt-28 px-5 flex">
+    <% if notice %><p class="bg-green-50 text-green-500 p-4 rounded-md mb-4 w-full"><%= notice %></p><% end %>
+    <% if alert %><p class="bg-red-50 text-red-500 p-4 rounded-md mb-4 w-full"><%= alert %></p><% end %>
+    <%= yield %>
+  </main>
+</body>
+<script>
+  // Initialize highlight.js
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeHighlighting();
+  });
+  
+  // Handle Turbo navigation
+  document.addEventListener('turbo:load', function() {
+    initializeHighlighting();
+  });
+  
+  // Also handle Turbo frame loads
+  document.addEventListener('turbo:frame-load', function() {
+    initializeHighlighting();
+  });
+  
+  // Handle ActionText content changes
+  document.addEventListener('trix-change', function() {
+    setTimeout(initializeHighlighting, 100);
+  });
+  
+  function initializeHighlighting() {
+    if (window.hljs) {
+      console.log('Applying highlighting to code blocks');
+      document.querySelectorAll('pre code').forEach((block) => {
+        try {
+          // Make sure the code has a language class
+          if (!block.className.includes('language-')) {
+            block.classList.add('language-plaintext');
+          }
+          
+          console.log('Highlighting block:', block);
+          hljs.highlightElement(block);
+        } catch (e) {
+          console.error('Error highlighting code block:', e);
+        }
+      });
+      
+      // Also highlight code blocks in trix-editor
+      document.querySelectorAll('.trix-content pre code').forEach((block) => {
+        try {
+          hljs.highlightElement(block);
+        } catch (e) {
+          console.error('Error highlighting trix code block:', e);
+        }
+      });
+    } else {
+      console.error('highlight.js not loaded');
+    }
+  }
+</script>
 </html>

@@ -29,3 +29,84 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+
+/* app/assets/stylesheets/actiontext.css - Add this to your existing ActionText CSS */
+
+/* Styling for code blocks in ActionText */
+.trix-content pre {
+  background-color: #f8f8f8;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+  margin: 16px 0;
+  word-wrap: normal;
+}
+
+.trix-content pre code {
+  background-color: transparent !important;
+  border: 0 !important;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0 !important;
+  word-wrap: normal;
+}
+
+/* Inline code */
+.trix-content code:not(pre code) {
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 85%;
+  margin: 0;
+  padding: 0.2em 0.4em;
+}
+
+/* Make sure code blocks in trix editor match the styling */
+trix-editor pre {
+  background-color: #f8f8f8;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+  margin: 16px 0;
+  word-wrap: normal;
+}
+
+trix-editor pre code {
+  background-color: transparent !important;
+  border: 0 !important;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0 !important;
+  word-wrap: normal;
+}
+
+/* Override any tailwind styles that might be affecting code blocks */
+.trix-content pre code,
+.trix-content code,
+trix-editor pre code,
+trix-editor code {
+  @apply font-mono;
+}
+
+.prose pre {
+  @apply bg-gray-50 border border-gray-200 !important;
+}
+
+.prose code {
+  @apply text-gray-800 !important;
+}
