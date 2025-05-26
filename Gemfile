@@ -64,7 +64,7 @@ gem "redcarpet", "~> 3.3", ">= 3.3.4"
 gem "rouge", "~> 4.2"
 # gem "friendly_id", "~> 5.1"
 
-gem "active_storage_validations", "~> 1.1", ">= 1.1.4"
+gem "active_storage_validations", "~> 2.0"
 # gem "ransack", "~> 1.7"
 gem "kaminari", "~> 1.2", ">= 1.2.2"
 
